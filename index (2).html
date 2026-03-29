@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>T. S. Cobb</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --cream: #f5f0e8;
+      --parchment: #ede7d9;
+      --warm-white: #faf8f4;
+      --slate: #6b7b8d;
+      --slate-dark: #4a5a6a;
+      --ink: #2c2c2a;
+      --ink-light: #5a5a55;
+      --rule: #d4ccbe;
+      --accent: #7a8fa0;
+    }
+
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      background-color: var(--warm-white);
+      color: var(--ink);
+      font-family: 'Jost', sans-serif;
+      font-weight: 300;
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    /* ---- DESKTOP LAYOUT ---- */
+    .site-wrapper {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      min-height: 100vh;
+    }
+
+    /* LEFT PANEL — fixed photo */
+    .panel-photo {
+      position: sticky;
+      top: 0;
+      height: 100vh;
+      background-color: var(--parchment);
+      overflow: hidden;
+    }
+
+    .panel-photo img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center top;
+      display: block;
+      filter: grayscale(100%);
+      opacity: 0.92;
+      transition: opacity 0.6s ease;
+    }
+
+    .photo-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        to bottom,
+        transparent 55%,
+        rgba(237, 231, 217, 0.35) 100%
+      );
+    }
+
+    /* RIGHT PANEL — scrollable content */
+    .panel-content {
+      background-color: var(--warm-white);
+      display: flex;
+      flex-direction: column;
+      padding: 72px 64px 64px;
+      min-height: 100vh;
+    }
+
+    /* Header / name */
+    .site-header {
+      margin-bottom: 56px;
+      opacity: 0;
+      animation: fadeUp 0.9s ease 0.1s forwards;
+    }
+
+    .site-header .eyebrow {
+      font-family: 'Jost', sans-serif;
+      font-weight: 400;
+      font-size: 10px;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--slate);
+      margin-bottom: 14px;
+    }
+
+    .site-header h1 {
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 300;
+      font-size: clamp(2.8rem, 4vw, 3.8rem);
+      line-height: 1.05;
+      color: var(--ink);
+      letter-spacing: -0.01em;
+    }
+
+    .site-header h1 em {
+      font-style: italic;
+      color: var(--slate);
+    }
+
+    /* Divider rule */
+    .rule {
+      width: 40px;
+      height: 1px;
+      background: var(--accent);
+      margin: 40px 0;
+      opacity: 0;
+      animation: fadeUp 0.9s ease 0.25s forwards;
+    }
+
+    /* Bio */
+    .bio {
+      opacity: 0;
+      animation: fadeUp 0.9s ease 0.35s forwards;
+    }
+
+    .bio p {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(1.1rem, 1.4vw, 1.22rem);
+      line-height: 1.78;
+      color: var(--ink-light);
+      font-weight: 400;
+      max-width: 480px;
+    }
+
+    /* Nav / links */
+    .nav-links {
+      margin-top: auto;
+      padding-top: 64px;
+      opacity: 0;
+      animation: fadeUp 0.9s ease 0.5s forwards;
+    }
+
+    .nav-links .section-label {
+      font-family: 'Jost', sans-serif;
+      font-weight: 400;
+      font-size: 9px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--slate);
+      margin-bottom: 20px;
+    }
+
+    .nav-links ul {
+      list-style: none;
+    }
+
+    .nav-links ul li {
+      border-top: 1px solid var(--rule);
+    }
+
+    .nav-links ul li:last-child {
+      border-bottom: 1px solid var(--rule);
+    }
+
+    .nav-links ul li a {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 18px 0;
+      text-decoration: none;
+      color: var(--ink);
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.15rem;
+      font-weight: 400;
+      letter-spacing: 0.01em;
+      transition: color 0.2s ease;
+    }
+
+    .nav-links ul li a:hover {
+      color: var(--accent);
+    }
+
+    .nav-links ul li a .link-arrow {
+      font-size: 0.85rem;
+      color: var(--slate);
+      transition: transform 0.2s ease, color 0.2s ease;
+    }
+
+    .nav-links ul li a:hover .link-arrow {
+      transform: translate(3px, -3px);
+      color: var(--accent);
+    }
+
+    /* "Coming soon" badge */
+    .badge {
+      font-family: 'Jost', sans-serif;
+      font-size: 9px;
+      font-weight: 400;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--slate);
+      border: 1px solid var(--rule);
+      padding: 3px 8px;
+      border-radius: 2px;
+      margin-right: 12px;
+    }
+
+    .link-meta {
+      display: flex;
+      align-items: center;
+    }
+
+    /* Footer */
+    .site-footer {
+      margin-top: 48px;
+      opacity: 0;
+      animation: fadeUp 0.9s ease 0.65s forwards;
+    }
+
+    .site-footer p {
+      font-family: 'Jost', sans-serif;
+      font-weight: 300;
+      font-size: 10px;
+      letter-spacing: 0.12em;
+      color: var(--slate);
+    }
+
+    /* Animations */
+    @keyframes fadeUp {
+      from {
+        opacity: 0;
+        transform: translateY(14px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* ---- MOBILE LAYOUT ---- */
+    @media (max-width: 768px) {
+      .site-wrapper {
+        display: block;
+        grid-template-columns: none;
+      }
+
+      .panel-photo {
+        position: relative;
+        height: 65vw;
+        max-height: 420px;
+        width: 100%;
+      }
+
+      .panel-content {
+        padding: 48px 32px 56px;
+        min-height: auto;
+      }
+
+      .site-header {
+        margin-bottom: 36px;
+      }
+
+      .nav-links {
+        padding-top: 48px;
+        margin-top: 0;
+      }
+
+      .site-header h1 {
+        font-size: 2.6rem;
+      }
+
+      .bio p {
+        font-size: 1.12rem;
+        max-width: 100%;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .panel-content {
+        padding: 36px 24px 48px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<div class="site-wrapper">
+
+  <!-- LEFT: Photo -->
+  <aside class="panel-photo">
+    <!--
+      PHOTO INSTRUCTIONS:
+      Replace the src below with your actual image file path.
+      The B&W version is already set via CSS (filter: grayscale(100%)).
+      To use the color photo instead, remove or comment out that CSS line.
+      Recommended: keep the image in the same folder as this HTML file.
+    -->
+    <img src="tscobb.png" alt="T. S. Cobb" />
+    <div class="photo-overlay"></div>
+  </aside>
+
+  <!-- RIGHT: Content -->
+  <main class="panel-content">
+
+    <header class="site-header">
+      <p class="eyebrow">Writer &nbsp;·&nbsp; Charlottesville</p>
+      <h1>T.&thinsp;S.&nbsp;<em>Cobb</em></h1>
+    </header>
+
+    <div class="rule"></div>
+
+    <section class="bio">
+      <p>
+        T. S. Cobb is a writer based in Charlottesville. He publishes occasional essays on
+        Substack. His work examines character, identity, and the narratives that shape
+        day-to-day decisions. He previously worked in finance in the United States and Europe.
+        He holds degrees in history and theology.
+      </p>
+    </section>
+
+    <nav class="nav-links">
+      <p class="section-label">Links</p>
+      <ul>
+        <li>
+          <a href="https://substack.com/@tsc2" target="_blank" rel="noopener noreferrer">
+            Essays on Substack
+            <span class="link-arrow">↗</span>
+          </a>
+        </li>
+        <li>
+          <!--
+            BOOK LINK INSTRUCTIONS:
+            When the book is available, replace href="#" with the actual purchase/info URL.
+            Remove the <span class="badge"> element when the book is live.
+          -->
+          <a href="#" aria-disabled="true">
+            <span class="link-meta">
+              <span class="badge">Book — April 2026</span>
+              For What It's Worth
+            </span>
+            <span class="link-arrow">↗</span>
+          </a>
+        </li>
+      </ul>
+    </nav>
+
+    <footer class="site-footer">
+      <p>&copy; 2025 T. S. Cobb</p>
+    </footer>
+
+  </main>
+
+</div>
+
+</body>
+</html>
