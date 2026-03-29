@@ -42,6 +42,9 @@
       font-weight: 300;
     }
 
+    /* Mobile header: hidden on desktop */
+    .mobile-header { display: none; }
+
     /* ---- DESKTOP LAYOUT ---- */
     .site-wrapper {
       display: flex;
@@ -248,45 +251,90 @@
 
     /* ---- MOBILE LAYOUT ---- */
     @media (max-width: 768px) {
+      html, body {
+        overflow: auto;
+        height: auto;
+      }
+
       .site-wrapper {
+        display: flex;
+        flex-direction: column;
+        height: auto;
+        overflow: visible;
+      }
+
+      /* Mobile header clone shows above photo */
+      .mobile-header {
         display: block;
-        grid-template-columns: none;
+        padding: 36px 28px 28px;
+        background: var(--warm-white);
+      }
+
+      .mobile-header .eyebrow {
+        font-family: 'Jost', sans-serif;
+        font-weight: 400;
+        font-size: 10px;
+        letter-spacing: 0.22em;
+        text-transform: uppercase;
+        color: var(--slate);
+        margin-bottom: 12px;
+      }
+
+      .mobile-header h2 {
+        font-family: 'Cormorant Garamond', serif;
+        font-weight: 300;
+        font-size: 2.8rem;
+        line-height: 1.05;
+        color: var(--ink);
+        letter-spacing: -0.01em;
+      }
+
+      .mobile-header h2 em {
+        font-style: italic;
+        color: var(--slate);
       }
 
       .panel-photo {
-        position: relative;
-        height: 65vw;
-        max-height: 420px;
         width: 100%;
+        height: auto;
+        flex-shrink: unset;
       }
 
+      .panel-photo img {
+        width: 100%;
+        height: auto;
+        display: block;
+      }
+
+      /* Hide desktop header and show only bio/links/footer in content panel */
       .panel-content {
-        padding: 48px 32px 56px;
-        min-height: auto;
+        height: auto;
+        overflow: visible;
+        padding: 36px 28px 48px;
+        flex: none;
       }
 
       .site-header {
-        margin-bottom: 36px;
-      }
-
-      .nav-links {
-        padding-top: 48px;
-        margin-top: 0;
-      }
-
-      .site-header h1 {
-        font-size: 2.6rem;
+        display: none;
       }
 
       .bio p {
         font-size: 1.12rem;
         max-width: 100%;
       }
+
+      .nav-links {
+        padding-top: 40px;
+        margin-top: 0;
+      }
     }
 
     @media (max-width: 480px) {
+      .mobile-header {
+        padding: 28px 24px 24px;
+      }
       .panel-content {
-        padding: 36px 24px 48px;
+        padding: 28px 24px 40px;
       }
     }
   </style>
@@ -295,7 +343,16 @@
 
 <div class="site-wrapper">
 
-  <!-- LEFT: Photo -->
+  <!-- DESKTOP: Photo left, content right -->
+  <!-- MOBILE: Header → Photo → Bio/Links stacked -->
+
+  <!-- Mobile-only header (shown above photo on small screens) -->
+  <div class="mobile-header">
+    <p class="eyebrow">Writer &nbsp;·&nbsp; Charlottesville, VA</p>
+    <h2>T.&thinsp;S.&nbsp;<em>Cobb</em></h2>
+  </div>
+
+  <!-- LEFT on desktop / TOP on mobile: Photo -->
   <aside class="panel-photo">
     <!--
       PHOTO INSTRUCTIONS:
@@ -308,7 +365,7 @@
     <div class="photo-overlay"></div>
   </aside>
 
-  <!-- RIGHT: Content -->
+  <!-- RIGHT on desktop / stacked on mobile -->
   <main class="panel-content">
 
     <header class="site-header">
