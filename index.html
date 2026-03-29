@@ -43,24 +43,20 @@
     .site-wrapper {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      min-height: 100vh;
+      align-items: stretch;
     }
 
-    /* LEFT PANEL — fixed photo */
+    /* LEFT PANEL — photo, full height, no crop */
     .panel-photo {
-      position: sticky;
-      top: 0;
-      height: 100vh;
       background-color: var(--parchment);
-      overflow: hidden;
-      display: flex;
-      align-items: flex-start;
     }
 
     .panel-photo img {
       width: 100%;
-      height: auto;
+      height: 100%;
       display: block;
+      object-fit: cover;
+      object-position: center center;
       filter: grayscale(100%);
       opacity: 0.92;
       transition: opacity 0.6s ease;
@@ -76,13 +72,12 @@
       );
     }
 
-    /* RIGHT PANEL — scrollable content */
+    /* RIGHT PANEL — stretches to match photo height */
     .panel-content {
       background-color: var(--warm-white);
       display: flex;
       flex-direction: column;
       padding: 72px 64px 64px;
-      min-height: 100vh;
     }
 
     /* Header / name */
