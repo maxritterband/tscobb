@@ -3,6 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#ede7d9" />
   <title>T. S. Cobb</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -264,9 +265,13 @@
       }
 
       /* Mobile header clone shows above photo */
+      body {
+        background-color: var(--parchment);
+      }
+
       .mobile-header {
         display: block;
-        padding: 36px 28px 28px;
+        padding: calc(36px + env(safe-area-inset-top)) 28px 28px;
         background: var(--parchment);
       }
 
@@ -329,6 +334,10 @@
       .nav-links {
         padding-top: 40px;
         margin-top: 0;
+      }
+
+      .site-footer {
+        padding-bottom: env(safe-area-inset-bottom);
       }
     }
 
