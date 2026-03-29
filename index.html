@@ -30,32 +30,37 @@
       scroll-behavior: smooth;
     }
 
+    html, body {
+      height: 100%;
+      overflow: hidden;
+    }
+
     body {
       background-color: var(--warm-white);
       color: var(--ink);
       font-family: 'Jost', sans-serif;
       font-weight: 300;
-      min-height: 100vh;
-      overflow-x: hidden;
     }
 
     /* ---- DESKTOP LAYOUT ---- */
     .site-wrapper {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      align-items: stretch;
+      height: 100vh;
+      overflow: hidden;
     }
 
-    /* LEFT PANEL — photo, full height, no crop */
+    /* LEFT PANEL — photo fills panel, no crop */
     .panel-photo {
       background-color: var(--parchment);
+      overflow: hidden;
     }
 
     .panel-photo img {
       width: 100%;
       height: 100%;
       display: block;
-      object-fit: cover;
+      object-fit: contain;
       object-position: center center;
       filter: grayscale(100%);
       opacity: 0.92;
@@ -72,12 +77,14 @@
       );
     }
 
-    /* RIGHT PANEL — stretches to match photo height */
+    /* RIGHT PANEL — fills height, internal scroll if needed */
     .panel-content {
       background-color: var(--warm-white);
       display: flex;
       flex-direction: column;
       padding: 72px 64px 64px;
+      height: 100vh;
+      overflow-y: auto;
     }
 
     /* Header / name */
