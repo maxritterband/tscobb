@@ -115,11 +115,6 @@
       letter-spacing: -0.01em;
     }
 
-    .site-header h1 em {
-      font-style: italic;
-      color: var(--slate);
-    }
-
     /* Divider rule */
     .rule {
       width: 40px;
@@ -143,6 +138,70 @@
       color: var(--ink-light);
       font-weight: 400;
       max-width: 480px;
+    }
+
+    /* Book link row with cover */
+    .book-link-row {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      width: 100%;
+    }
+
+    .book-cover-thumb {
+      flex-shrink: 0;
+      width: 56px;
+      aspect-ratio: 2/3;
+      background: var(--parchment);
+      border: 1px solid var(--rule);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .book-cover-thumb img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .book-cover-thumb .placeholder-lines {
+      display: flex;
+      flex-direction: column;
+      gap: 3px;
+      padding: 6px 5px;
+      width: 100%;
+    }
+
+    .book-cover-thumb .placeholder-lines span {
+      display: block;
+      height: 1px;
+      background: var(--rule);
+      width: 100%;
+    }
+
+    .book-cover-thumb .placeholder-lines span:first-child {
+      width: 70%;
+    }
+
+    .book-cover-thumb .placeholder-lines span:last-child {
+      width: 50%;
+    }
+
+    .book-link-text {
+      flex: 1;
+    }
+
+    .book-link-text .book-link-label {
+      font-family: 'Jost', sans-serif;
+      font-size: 10px;
+      font-weight: 400;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--slate);
+      display: block;
+      margin-bottom: 4px;
     }
 
     /* Nav / links */
@@ -294,10 +353,7 @@
         letter-spacing: -0.01em;
       }
 
-      .mobile-header h2 em {
-        font-style: italic;
-        color: var(--slate);
-      }
+
 
       .panel-photo {
         width: 100%;
@@ -364,8 +420,7 @@
 
   <!-- Mobile-only header (shown above photo on small screens) -->
   <div class="mobile-header">
-    <p class="eyebrow">Writer &nbsp;·&nbsp; Charlottesville, VA</p>
-    <h2>T.&thinsp;S.&nbsp;<em>Cobb</em></h2>
+    <h2>T.&thinsp;S.&nbsp;Cobb</h2>
   </div>
 
   <!-- LEFT on desktop / TOP on mobile: Photo -->
@@ -385,18 +440,14 @@
   <main class="panel-content">
 
     <header class="site-header">
-      <p class="eyebrow">Writer &nbsp;·&nbsp; Charlottesville, VA</p>
-      <h1>T.&thinsp;S.&nbsp;<em>Cobb</em></h1>
+      <h1>T.&thinsp;S.&nbsp;Cobb</h1>
     </header>
 
     <div class="rule"></div>
 
     <section class="bio">
       <p>
-        T. S. Cobb is a writer based in Charlottesville. He publishes occasional essays on
-        Substack. His work examines character, identity, and the narratives that shape
-        day-to-day decisions. He previously worked in finance in the United States and Europe.
-        He holds degrees in history and theology.
+        T. S. Cobb is a writer based in Charlottesville. His first book, <em>For What It's Worth: In Search of a Good Life</em>, was published in April 2026. He also writes occasional essays on Substack. His work examines meaning and the narratives that shape our daily lives. He previously worked in finance in London and holds degrees in history and theology.
       </p>
     </section>
 
@@ -412,13 +463,23 @@
         <li>
           <!--
             BOOK LINK INSTRUCTIONS:
-            When the book is available, replace href="#" with the actual purchase/info URL.
-            Remove the <span class="badge"> element when the book is live.
+            When cover art is ready, replace the .book-cover-thumb div contents with:
+            <img src="book-cover.jpg" alt="For What It's Worth cover" />
+            When the book link is live, replace href="#" with the purchase URL and remove aria-disabled.
           -->
           <a href="#" aria-disabled="true">
-            <span class="link-meta">
-              <span class="badge">Book — April 2026</span>
-              For What It's Worth
+            <span class="book-link-row">
+              <span class="book-cover-thumb">
+                <span class="placeholder-lines">
+                  <span></span>
+                  <span></span>
+                  <span></span>
+                </span>
+              </span>
+              <span class="book-link-text">
+                <span class="book-link-label">Book — April 2026</span>
+                For What It's Worth
+              </span>
             </span>
             <span class="link-arrow">&#x2197;&#xFE0E;</span>
           </a>
