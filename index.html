@@ -332,7 +332,6 @@
         overflow: visible;
       }
 
-      /* Mobile header clone shows above photo */
       body {
         background-color: var(--parchment);
       }
@@ -382,7 +381,6 @@
         display: block;
       }
 
-      /* Hide desktop header and show only bio/links/footer in content panel */
       .panel-content {
         height: auto;
         overflow: visible;
@@ -428,23 +426,11 @@
 
 <div class="site-wrapper">
 
-  <!-- DESKTOP: Photo left, content right -->
-  <!-- MOBILE: Header → Photo → Bio/Links stacked -->
-
-  <!-- Mobile-only header (shown above photo on small screens) -->
   <div class="mobile-header">
     <h2>T.&thinsp;S.&nbsp;Cobb</h2>
   </div>
 
-  <!-- LEFT on desktop / TOP on mobile: Photo -->
   <aside class="panel-photo">
-    <!--
-      PHOTO INSTRUCTIONS:
-      Replace the src below with your actual image file path.
-      The B&W version is already set via CSS (filter: grayscale(100%)).
-      To use the color photo instead, remove or comment out that CSS line.
-      Recommended: keep the image in the same folder as this HTML file.
-    -->
     <img src="tscobb.png" alt="T. S. Cobb" />
     <div class="photo-overlay"></div>
   </aside>
@@ -460,7 +446,7 @@
 
     <section class="bio">
       <p>
-        T. S. Cobb is a writer based in Virginia. His first book, <em>For What It's Worth: In Search of a Good Life</em>, was recently published. He also writes essays on Substack. His work examines meaning and the narratives that shape our daily lives. He previously worked in finance and holds degrees in history and theology.
+        T. S. Cobb spent twenty-five years in finance — analyzing companies and eventually running a hedge fund — before leaving to write. His essays and his first book, <em>For What It's Worth: In Search of a Good Life</em>, explore the things that can't be measured, planned, or forced into being. He holds degrees in history and theology and writes from a small town in Virginia.
       </p>
     </section>
 
@@ -468,12 +454,6 @@
       <p class="section-label">Links</p>
       <ul>
         <li>
-          <!--
-            BOOK LINK INSTRUCTIONS:
-            When cover art is ready, replace the .book-cover-thumb div contents with:
-            <img src="book-cover.jpg" alt="For What It's Worth cover" />
-            When the book link is live, replace href="#" with the purchase URL and remove aria-disabled.
-          -->
           <a href="https://www.amazon.com/dp/B0GX2VL7TJ/" target="_blank" rel="noopener noreferrer">
             <span class="book-link-row">
               <span class="book-cover-thumb">
